@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import re
+from replaceHelper import *
 
 ##Uses GUI, to be implemented later
 
@@ -7,12 +8,15 @@ import re
 class Soup():
     def __init__(self, filepath):
         self.path = filepath
-        try:
-            self.file = open(self.path, "r")
-            self.soup = BeautifulSoup(self.file, "html.parser")
-        except:
-            self.soup = None
-            raise Exception("File path is invalid")
+        self.soup = None
+        self.fnote_dict = {} #Used for superscripts
+        while self.soup is None:
+            try:
+                self.file = open(self.path, "r")
+                self.soup = BeautifulSoup(self.file, "html.parser")
+            except:
+                self.soup = None
+                self.path = input("Please enter a valid path: ")
             ##Need to handle exception in main
         
     def removetag(self, tagName):
@@ -29,52 +33,23 @@ class Soup():
             for tag in tagsFound:
                 tag.unwrap()
                 
-    def standard_replace(self):
+    def standardized(self):
         """
         Replaces standard things which each file always has
         for example the information enclosed by <head>, &nsbp, bold, italic, ""
         """
-        
-        html = self.soup.find("html")
-        new_tag = self.soup.new_tag("html")
-        html.replace_with(new_tag)
-        new_tag["lang"] = "en"
-        
-        tag = self.soup.find("html")
-        previous = tag.find_all_previous()
-        html_tag = self.soup.find('html')  # Find the <html> tag
-
-# Remove all elements preceding the <html> tag
-        previous_elements = html_tag.find_previous_siblings()
-        for element in previous_elements:
-            element.extract()
-        new_tag.insert_before(("<!Doctype HTML>"))
+        htmlTag(self.soup)
+        headTag(self.soup)
+        strongTag(self.soup)
+        italicTag(self.soup)
+        standardSpan(self.soup)
+        spacingNSBP(self.soup)
+        divTag(self.soup)
+        quotTags(self.soup)
+        saveFile(self.soup)      
         print(self.soup)
+        imgTag(self.soup)
         
-        #<!DOCTYPE HTML>
-        #<html lang="en">
-        found = self.soup.find("html")
-        #Replaces context of head tag with standard template
-        found.string = """
-<head>
-<title>Chapter Number Chapter title | Book Title</title>
-<meta charset="utf-8">
-<style>
-body {
-    font-size: 16px;
-    font-family: Verdana, "sans-serif";
-} p {
-    line-height: 1.5em;
-} ul {
-    list-style-type:none;
-} .bib {
-text-indent:-2em;
-margin-left:0em;
-line-height: 1.5em;
-    }
-</style>
-</head>"""
-    
     def standard_remove(self):
         """
         unwraps standard things like <span class font = 0 ... and others
@@ -111,8 +86,8 @@ if __name__ == "__main__":
 
     #test1.removetag(tagList)
     #print(test1)
-    test1.standard_replace()
-   #print(test1)
+    test1.standardized()
+    #print(test1)
 
         
         
