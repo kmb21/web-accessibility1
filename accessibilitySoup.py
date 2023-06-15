@@ -80,7 +80,7 @@ class Soup():
 ##In gui, there should be a wayh to see current state of text
 
 if __name__ == "__main__":
-    test1 = Soup("/Users/maxwellkumbong/Desktop/web-accessibility1/tesstFile.html")
+    test1 = Soup("/Users/maxwellkumbong/Desktop/web-accessibility1/Goldstein.html")
     #tags = input("Enter the tags you want to remove separated by commas: ")
     #tagList = tags.split(",")
 

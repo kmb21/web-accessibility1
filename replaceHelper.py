@@ -47,20 +47,22 @@ line-height: 1.5em;
     
 
 def strongTag(soup):
-    bold_tags = soup.find_all("span", style="font-weight:bold;")        
+    bold_tags = soup.find_all("span", style="font-weight:bold;")
     for tag in bold_tags:
-        new_tag = soup.new_tag('strong')
-        new_tag.string = tag.string
-        tag.replace_with(new_tag)
+        if tag.string is not None:
+            new_tag = soup.new_tag('strong')
+            new_tag.string = tag.string
+            tag.replace_with(new_tag)
         
         
     
 def italicTag(soup):
     bold_tags = soup.find_all("span", style="font-style:italic;")        
     for tag in bold_tags:
-        new_tag = soup.new_tag('em')
-        new_tag.string = tag.string
-        tag.replace_with(new_tag)
+        if tag.string is not None:
+            new_tag = soup.new_tag('em')
+            new_tag.string = tag.string
+            tag.replace_with(new_tag)
         
         
 def standardSpan(soup):
@@ -150,10 +152,11 @@ def unnecessaryTags(soup):
     for old_tag, new_tag in tag_replacements.items():
         tags = soup.find_all(old_tag)
         for tag in tags:
-            new_tag_obj = soup.new_tag(new_tag)
-            # Transfer the contents of the old tag to the new tag
-            new_tag_obj.string = tag.string
-            tag.replace_with(new_tag_obj)
+            if tag.string is not None:
+                new_tag_obj = soup.new_tag(new_tag)
+                # Transfer the contents of the old tag to the new tag
+                new_tag_obj.string = tag.string
+                tag.replace_with(new_tag_obj)
 
             
 def saveFile(soup):
