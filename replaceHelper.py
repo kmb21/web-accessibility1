@@ -143,7 +143,7 @@ def imgTag(soup):
             
 def unnecessaryTags(soup):
     tag_replacements = {
-    'div': 'button',
+    'div': '',
     'b': 'strong',
     'i': 'em',
     'emptytag': '',
@@ -157,6 +157,22 @@ def unnecessaryTags(soup):
                 # Transfer the contents of the old tag to the new tag
                 new_tag_obj.string = tag.string
                 tag.replace_with(new_tag_obj)
+                
+
+
+def brTags(soup):
+    br_tags = soup.find_all("br", {"clear": "all"})
+    
+    for br_tag in br_tags:
+        br_tag.unwrap()
+        
+
+def bookmarks(soup):
+    bookmark_tags = soup.find_all('a', {'name': lambda x: x and x.startswith('bookmark')})
+    
+    for bookmark_tag in bookmark_tags:
+        bookmark_tag.unwrap()
+        
 
             
 def saveFile(soup):
@@ -164,3 +180,5 @@ def saveFile(soup):
         file.write(str(soup))
 
 
+if __name__ == "__main__":
+    pass

@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import tkinter as tk
 import re
 from replaceHelper import *
 
@@ -45,10 +46,12 @@ class Soup():
         standardSpan(self.soup)
         spacingNSBP(self.soup)
         divTag(self.soup)
-        quotTags(self.soup)
-        saveFile(self.soup)      
-        print(self.soup)
+        quotTags(self.soup)      
         imgTag(self.soup)
+        brTags(self.soup)
+        bookmarks(self.soup)
+        print(self.soup)
+        saveFile(self.soup)
         
     def standard_remove(self):
         """
@@ -86,7 +89,8 @@ if __name__ == "__main__":
 
     #test1.removetag(tagList)
     #print(test1)
-    test1.standardized()
+    #test1.standardized()
+    window = tk.Tk()
     #print(test1)
 
         
