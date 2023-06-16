@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
+import tkinter as tk
 import re
-from langdetect import detect, detect_langs
+from langdetect import detect_langs
 
 
 def htmlTag(soup):
@@ -138,7 +139,7 @@ def imgTag(soup):
     for img in img_tags:
         
         if not img.has_attr('alt') or img['alt'] == '':
-            # Add 'alt' attribute with an empty value
+            # Adds 'alt' attribute with an empty value
             img['alt'] = ""
             
 def unnecessaryTags(soup):

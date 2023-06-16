@@ -89,9 +89,10 @@ if __name__ == "__main__":
 
     #test1.removetag(tagList)
     #print(test1)
-    #test1.standardized()
-    window = tk.Tk()
+    test1.standardized()
+    
     #print(test1)
+
 
         
         
