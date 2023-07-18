@@ -42,7 +42,7 @@ accuracy, and save valuable time, reduce monotonicity, all while achieving high-
    - Open folder in dist named "GUI"
    - Run file name "GUI" in folder GUI
 
-**File Structure**
+**File Structure**:
   GUI.py:
     - Main file which runs the code
     - Imports tkinter GUI and other files used to control the backend of the application
@@ -51,14 +51,14 @@ accuracy, and save valuable time, reduce monotonicity, all while achieving high-
   replaceHelper.py:
     - Uses Beautiful soup library, langdetect, and regEx modules to implements methods whihc modify html code.
 
-**Code Samples**
+**Code Samples**:
   Here are some code samples that demonstrate the integration of Tkinter and Beautiful Soup in this project. These examples illustrate how the GUI interacts with Beautiful Soup for web scraping tasks. Refer to the source code for more details.
   
   Example 1: [Scrape and Display Web Page Title](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
   Example 2: [Perform Advanced Data Extraction](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
   tkinter: https://docs.python.org/3/library/tk.html
   
-**Troubleshooting**
+**Troubleshooting**:
   If you encounter any issues or errors while using this project, consider the following solutions:
   
   Ensure that you have installed Tkinter and Beautiful Soup correctly.
