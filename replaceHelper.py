@@ -104,33 +104,55 @@ def quotTags(soup):
             
     
 
-def superScriptTag(soup, fnote_dict):
-    sup_occurrences = soup.find_all('sup')
-    #TODO: To boe continued
-    fnote_dict = {}
-    fnote_count = 1
+def superScriptTag(soup, sup_dict):
+    
+    # sup_occurrences = soup.find_all('sup')
+    # #TODO: To boe continued
+    # fnote_dict = {}
+    # fnote_count = 1
 
-    for sup in sup_occurrences:
-        sup_text = sup.text.strip()
+    # for sup in sup_occurrences:
+    #     sup_text = sup.text.strip()
 
-        if sup_text.isdigit():
-            if sup_text not in fnote_dict:
-                fnote_dict[sup_text] = chr(fnote_count + 96)  # Use lower case letters as characters
-                fnote_count += 1
-                temp = ""
-            else:
-                temp = chr()
+    #     if sup_text.isdigit():
+    #         if sup_text not in fnote_dict:
+    #             fnote_dict[sup_text] = chr(fnote_count + 96)  # Use lower case letters as characters
+    #             fnote_count += 1
+    #             temp = ""
+    #         else:
+    #             temp = chr()
 
-            sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+sup_text, id="ifnote"+sup_text).string(fnote_dict[sup_text])))
+    #         sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+sup_text, id="ifnote"+sup_text).string(fnote_dict[sup_text])))
+    #     else:
+    #         if sup_text in fnote_dict:
+    #             sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+str(fnote_count), id="ifnote"+str(fnote_count)).string(fnote_dict[sup_text])))
+    #             fnote_count += 1
+    #         else:
+    #             sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+str(fnote_count), id="ifnote"+str(fnote_count)).string(sup_text)))
+    #             fnote_dict[sup_text] = chr(fnote_count + 96)  # Use lower case letters as characters
+    #             fnote_count += 1
+    """
+    SUP CASES
+    - Normal ie finding expected st numbers correspond with ifnote
+    - When string numbers are letters
+    - Multiple cases of same footnote   
+    """
+    sup_tags = soup.find_all("sup")
+    n = 1
+    for sup_tag in sup_tags:
+        curr_tag_string = sup_tag.string
+        new_sup_tag = soup.new_tag('sup')
+        if curr_tag_string.isdigit():
+            num = curr_tag_string
         else:
-            if sup_text in fnote_dict:
-                sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+str(fnote_count), id="ifnote"+str(fnote_count)).string(fnote_dict[sup_text])))
-                fnote_count += 1
-            else:
-                sup.replace_with(soup.new_tag('sup').append(soup.new_tag('a', href="#fnote"+str(fnote_count), id="ifnote"+str(fnote_count)).string(sup_text)))
-                fnote_dict[sup_text] = chr(fnote_count + 96)  # Use lower case letters as characters
-                fnote_count += 1
-                
+            num = curr_tag_string
+            num +=11
+        new_sup_tag.append(soup.new_tag('a', href='#fnote1', id='ifnote1'))
+        new_sup_tag.a.string = '1'  # Set the content of the <a> tag
+        
+        # Replace the original <sup> tag with the new one
+        sup_tag.replace_with(new_sup_tag)
+                    
         
 
 def imgTag(soup):
@@ -176,8 +198,8 @@ def bookmarks(soup):
         
 
             
-def saveFile(soup):
-    with open('output.html', 'w') as file:
+def saveFile(soup, path):
+    with open(path, 'w') as file:
         file.write(str(soup))
 
 

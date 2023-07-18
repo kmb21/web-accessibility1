@@ -1,16 +1,13 @@
 from bs4 import BeautifulSoup
-import tkinter as tk
-import re
 from replaceHelper import *
-
-##Uses GUI, to be implemented later
 
 ##In future implementation, include adaptive editing features like making lists, etc
 class Soup():
     def __init__(self, filepath):
         self.path = filepath
         self.soup = None
-        self.fnote_dict = {} #Used for superscripts
+        self.sup_dict = {} #Used for superscripts
+        self.fnote_dict = {}
         while self.soup is None:
             try:
                 self.file = open(self.path, "r")
@@ -50,48 +47,49 @@ class Soup():
         imgTag(self.soup)
         brTags(self.soup)
         bookmarks(self.soup)
-        print(self.soup)
-        saveFile(self.soup)
+        #print(self.soup)
         
-    def standard_remove(self):
+        
+        
+    def savefile(self, path):
         """
-        unwraps standard things like <span class font = 0 ... and others
+        Given a path to save the file at, the function writes the updated code
+        to a new file
+        Args:
+            path (string): Path to store updated code
         """
+        saveFile(self.soup, path)
+        
+    # def standard_remove(self):
+    #     """
+    #     unwraps standard things like <span class font = 0 ... and others
+    #     """
                 
-    def __str__(self):
-        """
-        This enables users to see the current version of the file they are trying
-        to edit
-        Returns:
-            A string of the file showing the current progress of how the file currently
-            looks like. GUI will handle this
-        """
-        return "%s"%self.soup.prettify()
+    # def __str__(self):
+    #     """
+    #     This enables users to see the current version of the file they are trying
+    #     to edit
+    #     Returns:
+    #         A string of the file showing the current progress of how the file currently
+    #         looks like. GUI will handle this
+    #     """
+    #     return "%s"%self.soup.prettify()
     
-    def filter_tags(self, tag):
-        pass
+    # def filter_tags(self, tag):
+    #     pass
     
-    def replace_tag(self, tag):
-        pass
+    # def replace_tag(self, tag):
+    #     pass
     
-    def replace_section(self):
-        pass
-
-###TODO: Make standard changes to files, ie there are standard things which all files
-#so automatically implement these before user starts changing things.
-
-##In gui, there should be a wayh to see current state of text
+    # def replace_section(self):
+    #     pass
 
 if __name__ == "__main__":
-    test1 = Soup("/Users/maxwellkumbong/Desktop/web-accessibility1/Goldstein.html")
-    #tags = input("Enter the tags you want to remove separated by commas: ")
-    #tagList = tags.split(",")
-
-    #test1.removetag(tagList)
-    #print(test1)
-    test1.standardized()
+    # test1 = Soup("/Users/maxwellkumbong/Desktop/web-accessibility1/Goldstein.html")
+    # test1.standardized()
+    print("In main")
     
-    #print(test1)
+
 
 
         
