@@ -1,11 +1,16 @@
 Title: Accessibility Remediation Script
 
 Description:
+
 This document scraping script is a powerful tool designed to streamline the process of document remediation. Whether you're dealing with
 a large volume of documents or need to extract specific information from HTML documents, this script simplifies the task and helps you
 achieve accurate results efficiently.
 
 Key Features:
+
+- Intuitive Interface:
+  The script provides a user-friendly interface, making it accessible to users of all skill levels. No prior coding experience is required.
+  
 - Automated Document Remediation:
   Seamlessly extract and remediate data from various HTML documents. Say goodbye to the monotonous process of replacing tags.
   
