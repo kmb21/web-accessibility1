@@ -57,7 +57,8 @@ accuracy, and save valuable time, reduce monotonicity, all while achieving high-
   Example 1: [Scrape and Display Web Page Title](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
   Example 2: [Perform Advanced Data Extraction](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
   tkinter: https://docs.python.org/3/library/tk.html
-  Troubleshooting
+  
+**Troubleshooting**
   If you encounter any issues or errors while using this project, consider the following solutions:
   
   Ensure that you have installed Tkinter and Beautiful Soup correctly.
