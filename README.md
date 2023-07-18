@@ -66,3 +66,8 @@ accuracy, and save valuable time, reduce monotonicity, all while achieving high-
   Refer to the documentation and official resources for Tkinter and Beautiful Soup for troubleshooting specific issues.
 
 
+App Sample:
+
+![Accessibility script](https://github.com/kmb21/web-accessibility1/assets/113995857/a26935cf-ade8-4005-8176-dd07cf259b89)
+
+
