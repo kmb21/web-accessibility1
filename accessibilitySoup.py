@@ -47,6 +47,7 @@ class Soup():
         imgTag(self.soup)
         brTags(self.soup)
         bookmarks(self.soup)
+        superScriptTag(self.soup)
         #print(self.soup)
         
         
