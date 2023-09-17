@@ -47,7 +47,9 @@ class Soup():
         imgTag(self.soup)
         brTags(self.soup)
         bookmarks(self.soup)
-        superScriptTag(self.soup)
+        superScriptTag(self.soup, self.fnote_dict)
+        replaceEllipsis(self.soup)
+        replaceSemicolon(self.soup)
         #print(self.soup)
         
         

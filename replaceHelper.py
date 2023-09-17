@@ -19,7 +19,6 @@ def htmlTag(soup):
     
 def headTag(soup):
     new_head_text = """
-<head>
 <title>Chapter Number Chapter title | Book Title</title>
 <meta charset="utf-8">
 <style>
@@ -36,7 +35,7 @@ margin-left:0em;
 line-height: 1.5em;
     }
 </style>
-</head>"""
+"""
     head_tag = soup.head
 
     # Clears the existing content within the head tag
@@ -91,6 +90,7 @@ def divTag(soup):
         divTag.unwrap()
         
 def quotTags(soup):
+    ## CHANGE FUNCTIONALIT. Abby does not add &quot; to document.
     
     quot_occurrences = soup.find_all(text="&quot;")
     
@@ -104,25 +104,33 @@ def quotTags(soup):
             
     
 
-def superScriptTag(soup):
+def superScriptTag(soup, seentags):
+    ##when it finds a non numerical sup tag text, add a comment alerting the user to check it with original
+    ##document
     sup_occurrences = soup.find_all('sup')
 
     for sup in sup_occurrences:
         sup_text = sup.text.strip()
 
-        # Creates the new tag
+        if sup_text in seentags:         
+            sup_text += chr(96 + seentags[sup_text])  # Appending 'a', 'b', 'c', ...
+            seentags[sup_text] += 1
+        else:
+            seentags[sup_text] = 1
+
         new_sup_tag = soup.new_tag('sup')
         a_tag = soup.new_tag('a', href=f"#fnote{sup_text}", id=f"ifnote{sup_text}")
         a_tag.string = sup_text
         new_sup_tag.append(a_tag)
 
-        # Replaces the original sup tag with the new structure
         sup.replace_with(new_sup_tag)
-        
+
    
         
 
 def imgTag(soup):
+    #img should be enclosed in a figure tag and figcaption should be commented
+    
     img_tags = soup.find_all('img')
 
     for img in img_tags:
@@ -156,6 +164,25 @@ def brTags(soup):
     for br_tag in br_tags:
         br_tag.unwrap()
         
+
+def replaceEllipsis(soup):
+    for text in soup.find_all(text=True):
+        modified_text = text.replace("...", "&hellip;")
+        text.replace_with(modified_text)
+
+def replaceSemicolon(soup):
+    ##No that common
+    ##
+    for text in soup.find_all(text=True):
+        modified_text = text.replace(";", "&colon;")
+        text.replace_with(modified_text)
+  
+##look for copy right symbols and replace with &copy;
+#add bibliography, 
+##for tables, remove td tags with style attribute\
+##mdash is -- sometimes, so search for instances of this
+##Check for accents and replace the accordingly.
+##see you can figure out what to do regarding end of page
 
 def bookmarks(soup):
     bookmark_tags = soup.find_all('a', {'name': lambda x: x and x.startswith('bookmark')})
