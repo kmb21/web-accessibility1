@@ -50,6 +50,11 @@ class Soup():
         superScriptTag(self.soup, self.fnote_dict)
         replaceEllipsis(self.soup)
         replaceSemicolon(self.soup)
+        replaceCopySymbol(self.soup)
+        tableTags(self.soup)
+        accents(self.soup)
+        mdash(self.soup)
+        
         #print(self.soup)
         
         

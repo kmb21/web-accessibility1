@@ -1,0 +1,3 @@
+([('GUI',
+   '/Users/maxwellkumbong/Desktop/web-accessibility1/dist/GUI',
+   'EXECUTABLE')],)
