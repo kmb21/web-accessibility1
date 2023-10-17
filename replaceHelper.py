@@ -36,7 +36,6 @@ def headTag(soup):
 <meta charset="utf-8">
 <style>
 body {
-    font-size: 16px;
     font-family: Verdana, "sans-serif";
 } p {
     line-height: 1.5em;
@@ -130,13 +129,14 @@ def divTag(soup):
     for divTag in  divOccurrences:
         divTag.unwrap()
         
-def quotTags(soup):
-    """
-    Replaces all curly quotes with q tags
-    """
-    
-    for text_node in soup.find_all(text=True):
-        text_node.replace_with(text_node.replace('“', '<q>').replace('”', '</q>'))
+# def quotTags(soup):
+#     """
+#     Replaces all curly quotes with q tags
+#     """
+#     open_q_tag = soup.new_tag("q")
+#     closing_q_tag = soup.new_tag("/q")
+#     for text_node in soup.find_all(text=True):
+#         text_node.replace_with(text_node.replace('“', '<q>').replace('”', '</q>'))
 
 
             
@@ -149,7 +149,7 @@ def superScriptTag(soup, seentags):
     Adds ifnotes and fnotes to supercript tags
     Args:
         soup (Object): A beautiful soup object for the html file
-        seentags (Dictionary): A dictionary sotry the seen ifnotes to avoid instances of the same sup tags
+        seentags (Dictionary): A dictionary storing the seen ifnotes to avoid instances of the same sup tags
                                pointing to different instances
     """
     sup_occurrences = soup.find_all('sup')
@@ -224,7 +224,8 @@ def replaceEllipsis(soup):
 
 def replaceSemicolon(soup):
     """
-    Replaces ; with &colon; 
+    Replaces ; with &colon;
+    Not very necessary 
     """
     for text in soup.find_all(text=True):
         modified_text = text.replace(";", "&colon;")

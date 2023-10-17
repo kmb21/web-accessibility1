@@ -43,13 +43,13 @@ class Soup():
         standardSpan(self.soup)
         spacingNSBP(self.soup)
         divTag(self.soup)
-        quotTags(self.soup)      
+        # quotTags(self.soup)      
         imgTag(self.soup)
         brTags(self.soup)
         bookmarks(self.soup)
         superScriptTag(self.soup, self.fnote_dict)
         replaceEllipsis(self.soup)
-        replaceSemicolon(self.soup)
+        # replaceSemicolon(self.soup)
         replaceCopySymbol(self.soup)
         tableTags(self.soup)
         accents(self.soup)
@@ -68,29 +68,18 @@ class Soup():
         """
         saveFile(self.soup, path)
         
-    # def standard_remove(self):
-    #     """
-    #     unwraps standard things like <span class font = 0 ... and others
-    #     """
                 
-    # def __str__(self):
-    #     """
-    #     This enables users to see the current version of the file they are trying
-    #     to edit
-    #     Returns:
-    #         A string of the file showing the current progress of how the file currently
-    #         looks like. GUI will handle this
-    #     """
-    #     return "%s"%self.soup.prettify()
+    def __str__(self):
+        """
+        This enables users to see the current version of the file they are trying
+        to edit
+        Returns:
+            A string of the file showing the current progress of how the file currently
+            looks like. GUI will handle this
+        """
+        return "%s"%self.soup.prettify()
     
-    # def filter_tags(self, tag):
-    #     pass
-    
-    # def replace_tag(self, tag):
-    #     pass
-    
-    # def replace_section(self):
-    #     pass
+
 
 if __name__ == "__main__":
     # test1 = Soup("/Users/maxwellkumbong/Desktop/web-accessibility1/Goldstein.html")
