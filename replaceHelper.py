@@ -166,7 +166,7 @@ def superScriptTag(soup, seentags):
 
         new_sup_tag = soup.new_tag('sup')
         a_tag = soup.new_tag('a', href=f"#fnote{modified_sup_text}", id=f"ifnote{modified_sup_text}")
-        a_tag.string = modified_sup_text
+        a_tag.string = sup_text
         new_sup_tag.append(a_tag)
 
         sup.replace_with(new_sup_tag)
@@ -269,7 +269,8 @@ def mdash(soup):
         modified_text = text_node.replace('--', '&mdash;')
         text_node.replace_with(modified_text)
 #add bibliography, 
-
+#add &dollar;
+#&percnt
 
 ##see you can figure out what to do regarding end of page
 
