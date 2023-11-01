@@ -5,6 +5,7 @@ from replaceHelper import *
 class Soup():
     def __init__(self, filepath):
         self.path = filepath
+        
         self.soup = None
         self.sup_dict = {} #Used for superscripts
         self.fnote_dict = {}
@@ -13,7 +14,7 @@ class Soup():
                 self.file = open(self.path, "r")
                 self.soup = BeautifulSoup(self.file, "html.parser")
             except:
-                self.soup = None
+                self.soup = BeautifulSoup(self.path, "lxml") if isinstance(filepath, str) else None
                 self.path = input("Please enter a valid path: ")
             ##Need to handle exception in main
         
