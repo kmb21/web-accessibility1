@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import tkinter as tk
 import re
 import html
-from langdetect import detect_langs
+from langdetect import detect_langs, DetectorFactory
 
 
 def htmlTag(soup):
@@ -16,6 +16,7 @@ def htmlTag(soup):
     if "lang" not in html_tag.attrs:
         text = soup.get_text()
         # Detects the language probabilities
+        DetectorFactory.seed = 0
         lang_probs = detect_langs(text)
         # Sorts the language probabilities in descending order
         lang_probs.sort(key=lambda x: x.prob, reverse=True)
